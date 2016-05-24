@@ -1,0 +1,960 @@
+FORMAT: 1A
+HOST: https://viewer.mediafly.com
+
+# Mediafly Commands
+
+This documentation represents the HTTP portion of the Mediafly Commands. These calls are typically
+    abstracted from the interactive developer; thus the target audience are internal developers working 
+    on the the mobile, desktop, viewer or the convenience library that the interactive developers use. 
+    The mobile, desktop, and viewer listens for these commands and responds accordingly so that the 
+    convenience library can return the results to the interactive developer.
+
+# Group System
+
+## Get System Info [/interactive-api/v5/system]
+
+### GET [GET]
+
+Get info about the application by returning an object with information about the device
+and application feature capibilities.
+
++ Request
+    
+    + Headers
+        
+            Cookie: interactivese2e-jwt=did=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJQcm9kdWN0Q2xhaW0iOiJ7XCJJZFwiOlwiOTM2OWI0MzVjNTA0NGMxOWIxMzEwN2JhYjA0Y2UwMzBcIixcIk5hbWVcIjpcIlRlc3QgSW50ZXJhY3RpdmVzIEUyRVwiLFwiTUNvZGVcIjpcImludGVyYWN0aXZlc2UyZVwifSIsIlVzZXJDbGFpbSI6IntcIklkXCI6XCJkNWNjYWE3MDY3NDc0NWM1YmFmMzhmODQxZDY4OTAzMVwiLFwiVXNlcm5hbWVcIjpcInFhQG1lZGlhZmx5LmNvbVwiLFwiRGlzcGxheU5hbWVcIjpcInFhQG1lZGlhZmx5LmNvbVwiLFwiQWNjZXNzVG9rZW5cIjpudWxsLFwiRW5jcnlwdGVkQWNjZXNzVG9rZW5cIjpcIkVJbm80ZXFGQmdLTGk1NTk2Y0d1eWkzKzhqcTd1OFIrbGNwaEx4Nld3dDF1SGRNWXJWM25pUThBSHVWeWVMTDhcIixcIkVtYWlsQWRkcmVzc1wiOlwicWFAbWVkaWFmbHkuY29tXCJ9IiwiaXNzIjoidmlld2VyIiwiYXVkIjoibWVkaWFmbHkuY29tIiwiZXhwIjoxNDYzNTkwOTQ0LCJuYmYiOjE0NjM1MDQ1NDR9.718pFnNb2CIz8RvPN1wPDoL__6ygSEK5e6INdKi136U; devicetype=web
+            Referer: https://viewer.mediafly.com/interactives/interactive/9cf282320e6340ee8b830e5376d54531product246271/index.html
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Attributes (SystemInfo)
+    
++ Response 500 (application/json; charset=utf-8)
+    
+    + Attributes (ErrorMsg)
+    
+## Get Online Status [/interactive-api/v5/system/online-status]
+
+### GET - All but Viewer [GET]
+
+Check internet connection.
+
+> Note: This call is only pertinent on mobile or desktop. It has no real context on viewer as viewer is implicitly online, always
+
++ Response 200 (application/json)
+
+    + Attributes (Status)
+    
+## Get GPS Coordinates [/interactive-api/v5/system/gps]
+
+### GET - Mobile Only [GET]
+
+Retrieve the lat/long of the user's device
+
+> Note: This call is pertinent on mobile only.
+
++ Response 200 (application/json)
+
+    + Attributes (GPS-Coords)
+    
+## Get Upload Url [/interactive-api/v5/system/uploadurl?key={key}]
+
++ Parameters
+
+    + key: `2134` (string) - The key of the item we wish to look up on S3
+
+### GET [GET]
+
+Get upload URL to s3 for the item provided using key parameter. This method should return 
+a pre-signed URL so an interactive can upload to an S3 bucket:
+
+
++ Response 200 (application/json)
+
+    + Attributes (UrlInfo)
+    
+# Group Item Data
+
+## Get Current Item [/interactive-api/v5/items/__self__]
+
+### GET [GET]
+
+Get info about current interactive
+
++ Response 200 (application/json)
+
+    + Attributes (Item)
+         
+## Get Item or Folder [/interactive-api/v5/items/{id}]
+
++ Parameters
+
+    + id: `2134` (string) - The unique id of the item we wish to fetch
+
+### GET [GET]
+
+Get info about an item or a folder. Note that request is the same but different return values. See documented examples
+
++ Request Item (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (Item)
+
++ Request Folder (application/json)
+    
++ Response 200 (application/json)
+
+    + Attributes (Folder)
+    
+## Get Share [/interactive-api/v5/items/${id}/share]
+
++ Parameters
+
+    + id: `2134` (string) - The unique id of the item we wish to fetch a share link
+    
+### GET [GET]
+
+Get a share link for an item
+
++ Response 200 (application/json)
+
+    + Attributes (ShareLink)
+    
+## Get Folder Items [/interactive-api/v5/items/${id}/items]
+
++ Parameters
+
+    + id: `2134` (string) - The unique id of the folder which we wish to obtain content from
+    
+### GET [GET]
+
+Get item list in a folder. Note that the example responses are of array[Item] and array[folder]. But could be mixture of the two
+
++ Request Item (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Item])
+    
++ Request Folder (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Folder])
+
+# Group Controls
+
+## Show Control Bars [/interactive-api/v5/control/control-bars]
+
+### POST - Mobile only [POST]
+
++ Request (application/json)
+
+    + Attributes (ControlRequest)
+    
++ Response 200
+
+# Group Navigation
+
+## Close Interactive [/interactive-redirect/v5/items/{id}/back?collection={collectionId}&term={term}]
+
++ Parameters
+
+    + id: `1234` (string) - ???
+    + collectionId: `1234` (string, optional) - If defined take the user back to the collection
+    + term: `1234` (string, optional) - If defined take user back to search results
+
+### GET [GET]
+
+Close the interactive with some conditonal logic, see notes
+
+> Note that 'collection' and 'term' are optional.
+
+> - If 'collection' is defined take the user back to the collection.
+> - If 'term' is defined, take the user back to search results.
+> - If neither are defiend, take the user back to the items parent.
+
++ Response 200 (application/json)
+
+## Go to Next Item [/interactive-redirect/v5/items/{id}/next?collection={collectionId}&term={term}]
+
++ Parameters
+
+    + id: `1234` (string) - ???
+    + collectionId: `1234` (string, optional) - If defined take the user to the next item in the collection
+    + term: `1234` (string, optional) - If defined take user to the next item in the search results
+
+### GET [GET]
+
+Go to the next item; with some conditonal logic, see notes
+
+> Note 'collection' and 'term' are optional.
+
+> - If 'collection' is defined take the user to the next item in the collection.
+> - If 'term' is defined take the user to the next item in the search results.
+> - If neither are defiend, take the user to the next item in the folder
+
++ Response 200 (application/json)
+
+## Go to Previous Item [/interactive-redirect/v5/items/{id}/previous?collection={collectionId}&term={term}]
+
++ Parameters
+
+    + id: `1234` (string) - ???
+    + collectionId: `1234` (string, optional) - If defined take the user to the previous item in the collection.
+    + term: `1234` (string, optional) - If defined take the user to the previous item in the search results.
+
+### GET [GET]
+
+Go to the previous item; with some conditonal logic, see notes
+
+> Note 'collection' and 'term' are optional.
+
+> - If 'collection' is defined take the user to the previous item in the collection.
+> - If 'term' is defined take the user to the previous item in the search results.
+> - If neither are defiend, take the user to the previous item in the folder
+
++ Response 200 (application/json)
+
+# Group App Features
+
+## Show UI [/interactive-api/v5/control/show-ui]
+
+### POST - Mobile only [POST]
+
+There are serveral show UI requests for this endpoint. Based on the parameters (see below) different actions
+will occur on the mobile device.
+
+> - Show app settings
+> - Show User Management Dialog
+> - Show second screen options
+> - Show annotations control bar
+> - Show Search dialog
+> - Show collections dialog
+> - Show add to collection dialog
+> - Show downloader
+> - Show notifications manager
+
++ Request App Settings (application/json)
+
+        {
+            "ui" : "app-setttings"
+        }
+
++ Response 200
+        
++ Request User Management Dialog (application/json)
+
+        {
+            "ui" : "user-management"
+        }
+        
++ Response 200
+        
++ Request Second Screen (application/json)
+
+        {
+            "ui" : "second-screen"
+        }
+
++ Response 200
+        
++ Request Annotations (application/json)
+
+        {
+            "ui" : "annotations"
+        }
+        
++ Response 200
+
++ Request Search (application/json)
+
+        {
+            "ui" : "search"
+        }
+        
++ Response 200
+
++ Request Collections (application/json)
+
+        {
+            "ui" : "collections"
+        }
+        
++ Response 200
+
++ Request Add to Collection (application/json)
+
+        {
+            "ui" : "add-to-collection"
+        }
+        
++ Response 200
+
++ Request Downloader (application/json)
+
+        {
+            "ui" : "downloads"
+        }
+        
++ Response 200
+
++ Request Notification Manager (application/json)
+
+        {
+            "ui" : "notifications"
+        }
+        
++ Response 200
+
+## Email [/interactive-api/v5/control/email]
+
+### POST - Mobile Only [POST]
+
+Show email controller for platform
+
+> Returns 200 if request is successful, 500 otherwise. Note that no data is returned
+
++ Request (application/json)
+
+    + Attributes (SimpleIdRequest)
+
++ Response 200
+
++ Response 500
+
+## Take Screenshot and Email [/interactive-api/v5/control/email-screenshot]
+
+### POST - Mobile Only [POST]
+
+Take a screenshot and show email controller for platform
+
+> Request has no need for body
+> Returns 200 if request is successful, 500 otherwise. Note that no data is returned
+
++ Request (application/json)
+
+        {
+        }
+
++ Response 200
+
++ Response 500
+
+# Group Application Sync
+
+## Refresh [/interactive-api/v5/sync]
+
+### POST - Not Viewer [POST]
+
+Tell the app to refresh
+
+> Note that there is no POST body requried and only a status code is returned
+
++ Request (application/json)
+
++ Response 200
+
+## Sync Status [/interactive-api/v5/sync/status]
+
+### GET - Not View [GET]
+
+Get application sync status
+
++ Response 200 (application/json)
+
+    + Attributes (SyncStatus)
+
+# Group Searching
+
+## Filter [/interactive-api/v5/items?filter={key1}:{value1},{key2}:{value2}]
+
++ Parameters
+
+    + key1: `name` (string) - First key'd attribute to search on
+    + value1: `2134` (string) - First value to search on key1
+    + key2: `location` (string) - Second key'd attribute to search on
+    + value2: `2134` (string) - Second value to search on key2
+
+### GET [GET]
+
+Filter by specific properties. Example responses are of array[Item] and array[folder]. But could be mixture of the two
+
+> Note: Sample has just two properties being searched. Follow format for more properties.
+
++ Request Item (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Item])
+    
++ Request Folder (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Folder])
+    
+## Search [/interactive-api/v5/items?{term}]
+
++ Parameters
+
+    + term: `present` (string) - the search term you would like to query for
+
+### GET [GET]
+
+Search for a term. Example responses are of array[Item] and array[folder]. But could be mixture of the two
+
++ Request Item (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Item])
+    
++ Request Folder (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Folder])
+
+# Group Lists
+
+## Last Viewed Content [/interactive-api/v5/items?list=last-viewed]
+
+### GET [GET]
+
+Obtain the last viewed content. Example responses are of array[Item] and array[folder]. But could be mixture of the two
+
++ Request Item (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Item])
+    
++ Request Folder (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Folder])
+    
+## Recently Created [/interactive-api/v5/items?list=recently-created]
+
+### GET [GET]
+
+Obtain recently created content. Example responses are of array[Item] and array[folder]. But could be mixture of the two
+
++ Request Item (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Item])
+    
++ Request Folder (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Folder])
+
+# Group Collections Tasks
+
+## Collections [/interactive-api/v5/collections]
+
+### GET [GET]
+
+Get all the collections.
+
++ Request  (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Collection])
+    
+### POST [POST]
+
+Create a collection
+
++ Request (application/json)
+
+    + Attributes (CreateCollectionPost)
+    
++ Response 201 (application/json)
+
+    + Attributes (Collection)
+    
+## Collection [/interactive-api/v5/collections/{collectionId}]
+
++ Parameters
+
+    + collectionId: `2134` (string) - The unique id of the collection we wish to interact with
+    
+### PUT [PUT]
+
+Update a collection name
+
++ Request (application/json)
+
+    + Attributes (CreateCollectionPost)
+    
++ Response 200 (application/json)
+
+    + Attributes (Collection)
+    
+### DELETE [DELETE]
+
+Delete a collection by ID
+
++ Response 200 (application/json)
+
+## Collection Items [/interactive-api/v5/collections/{collectionId}/items]
+
++ Parameters
+
+    + collectionId: `2134` (string) - The unique id of the collection we wish to interact with
+    
+### GET [GET]
+
+Get all the items in a collection. Example responses are of array[Item] and array[folder]. But could be mixture of the two
+
++ Request Item (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Item])
+    
++ Request Folder (application/json)
+
++ Response 200 (application/json)
+
+    + Attributes (array[Folder])
+    
+### POST [POST]
+
+Add an item(s) to a collection
+
++ Request (application/json)
+
+    + Attributes (SimpleArrayOfIds)
+    
++ Response 200 (application/json)
+
+## Collection Item [/interactive-api/v5/collections/{collectionId}/items/{itemId}]
+
++ Parameters
+
+    + collectionId: `2134` (string) - The unique id of the collection we wish to interact with
+    + itemId: `789` (string) - The unique id of the item we wish to remove from the collection
+
+### DELETE [DELETE]
+
+Remove an item from a collection
+
++ Response 200 (application/json)
+
+## Reorder Collection Item [/interactive-api/v5/collections/{collectionId}/items/{itemId}/order?position={position}]
+
++ Parameters
+
+    + collectionId: `2134` (string) - The unique id of the collection we wish to interact with
+    + itemId: `789` (string) - The unique id of the item we wish to remove from the collection
+    + position: 3 (number) - Reordered position of the item
+
+### PUT [PUT]
+
+Reorder an item in the collection
+
++ Response 200 (application/json)
+
+# Group Downloader
+
+## Total Download Status [/interactive-api/v5/downloads/status]
+
+### GET - Not Viewer [GET]
+
+Get total download progress
+
++ Response 200 (application/json)
+
+    + Attributes (DownloadStatuses)
+    
+## Download Status [/interactive-api/v5/downloads/{id}/status/]
+
++ Parameters
+
+    + id: `2134` (string) - The unique id of the item we are looking for a download status of
+
+### GET - Not Viewer [GET]
+
+Get download status for an item
+
++ Response 200 (application/json)
+
+    + Attributes (DownloadStatus)    
+
+## Add to Downloader [/interactive-api/v5/downloads]
+
+### POST - Not Viewer [POST]
+
+Add items to the downloader
+
++ Request (application/json)
+
+    + Attributes (SimpleArrayOfIds)
+    
++ Response 200 (application/json)
+
+## Remove from Downloader [/interactive-api/v5/downloads/{itemId}]
+
++ Parameters
+
+    + itemId: `2134` (string) - The unique id of the item to remove from the downloader
+    
+### DELETE - Not Viewer [DELETE]
+
+Remove from the downloader
+
++ Response 200 (application/json)
+
+# Group Notifications
+
+## Notifications [/interactive-api/v5/notifications/{id}]
+
++ Parameters
+
+    + id: `2134` (string) - The unique id of folder in dealing with notifications
+    
+### POST [POST]
+
+Add a folder to the list of notifications
+
++ Response 200 (application/json)
+
+### DELETE [DELETE]
+
+Remove a folder from the list of notifications
+
++ Response 200 (application/json)
+
+### GET [GET]
+
+Get the status of for a folder that is in the notification list
+
++ Response 200 (application/json)
+
+    + Attributes (FolderNotificationStatus)
+
+# Group Account Info
+
+## Logout [/interactive-redirect/v5/account/logout]
+
+### GET - All but Viwer [GET]
+
+Logs user out of the system and return to the login page
+
++ Response 200 (application/json)
+
+## Get User Info [/interactive-api/v5/account]
+
+### GET [GET]
+
+Get info about the current user
+
++ Response 200 (application/json)
+
+    + Attributes  (UserAccount)
+
+# Group Embed
+
+# Group Local Key Value Storage
+
+## All Keys [/interactive-api/v5/info?prefix={prefix}]
+
++ Parameters
+
+    + prefix: `abc` (string) - Optional query parameter, if used will return all keys that start with the prefix. Omit to return all keys
+    
+### GET - Mobile Only [GET]
+
+Gets all keys of the stored key-value pairs. If you use the prefix parameter, then only keys with said prefix will be returned
+
++ Response 200 (application/json)
+
+        {
+            ["key1", "key2", "key3"]
+        }
+    
+### POST - Mobile Only [POST]
+
+Create or update key-value pairs
+
++ Request (application/json)
+
+    + Attributes (array[KeyValueStorage])
+    
++ Response 200 (application/json)
+
+## Specific Key [/interactive-api/v5/info/{key}]
+
++ Parameters
+
+    + key: `abc` (string) - The key on which to look up a value
+
+### GET - Mobile Only [GET]
+
+Obtain the value for the key asked for
+
+> Note: Given this is json any valid json object should be able to be returned
+
++ Response 200 (application/json)
+
+        {
+        }
+
+### DELETE - Mobile Only [DELETE]
+
+Delete the value for the provided key
+
++ Response 200 (application/json)
+
+# Group Synced Key Value Storage
+
+## All Keys [/interactive-api/v5/syncedinfo?prefix={prefix}]
+
++ Parameters
+
+    + prefix: `abc` (string) - Optional query parameter, if used will return all keys that start with the prefix. Omit to return all keys
+    
+### GET - Mobile Only [GET]
+
+Gets all keys of the stored key-value pairs. If you use the prefix parameter, then only keys with said prefix will be returned
+
++ Response 200 (application/json)
+
+        {
+            ["key1", "key2", "key3"]
+        }
+    
+### POST - Mobile Only [POST]
+
+Create or update key-value pairs
+
++ Request (application/json)
+
+    + Attributes (array[KeyValueStorage])
+    
++ Response 200 (application/json)
+
+## Specific Key [/interactive-api/v5/syncedinfo/{key}]
+
++ Parameters
+
+    + key: `abc` (string) - The key on which to look up a value
+
+### GET - Mobile Only [GET]
+
+Obtain the value for the key asked for
+
+> Note: Given this is json any valid json object should be able to be returned
+
++ Response 200 (application/json)
+
+        {
+        }
+
+### DELETE - Mobile Only [DELETE]
+
+Delete the value for the provided key
+
++ Response 200 (application/json)
+
+# Group Post Actions
+
+## Post Action [/interactive-api/v5/actions]
+
+### POST [POST]
+
+TODO - Write something here
+
++ Request (application/json)
+
+    + Attributes (PostActionRequest)
+    
++ Response 200 (application/json)
+
+# Group Email a File
+
+## Email Data URL [/interactive-api/{version}/control/email]
+
+### POST - Mobile Only [POST]
+
+Create a file from data URL and attach to an email
+
++ Request (application/json)
+
+        {
+            "dataUrl" : "http://someusefulurl.com/thing.ext"
+        }
+        
++ Response 200 (application/json)        
+
+# Group Deprecated
+
+## Interactive Info [/interactive-api/v5/interactive]
+
+### GET [GET]
+
+Get info about the interactive
+        
+> Note: Depricated in favor of getCurrentItem(), getUserInfo, and getSystemInfo() methods. 
+> These are javascript methods that will ultimately all their HTTP counterparts.
+
++ Response 200 (application/json)
+
+    + Attributes (Interactive)
+    
+# Data Structures
+
+## ErrorMsg (object)
+
+- message: Something went wrong (string, required) - Detailed string in case something goes wrong with the request
+
+## Interactive (object)
+
+- deviceId: 3214 (string) - The id of the device being used
+- id: 123 (string) - Unique identifer of the interactive
+- lastUpdated: `2014-08-20T12:51:54.8749796Z` (string) - Timestamp of the last update to the interactive
+- item: ??? (string) - ???
+- osType: iOS (string) - Operating system that the interactive is running on
+- parentId: 0 (string) - Unique identifer of the interactive's parent
+- user: bob (string) - The current logged in user
+- displayName: My Cool Interactive (string) - Human readable name of the interactive
+
+## SystemInfo (object)
+
+- osType: iOS (string, required) - Operating system that the interactive is running on. Possible values are "web", "ios", "android", "desktop"
+- supportsDownloads: true (boolean, required) - Whether or not device supports downloads
+- supportsEmail: true (boolean, required) - Whether or not device supports emails
+- supportsGPS: true (boolean, required) - Whether or not device supports GPS
+- supportsOfflineMode: true (boolean, required) - Whether or not the device supports offline capabilities
+- supportsSecondScreen: true (boolean) - Whether or not the device supports a second screen
+
+## Status (object)
+
+- status: true (string) - "true" if online, "false" otherwise. Keep in mind this is a string
+
+## GPS-Coords (object)
+
+- latitude: `-40.364589` (number) - Latitude of the device using a double
+- longitude: `23.23152` (number) - Longitude of the device using a double
+
+## UrlInfo (object)
+
+- url: http://s3.amazon.com/sfiiebg936tsa0whryf (string) - URL of key'd item on S3
+
+## Item (AbstractItem)
+
+- resourceUrl: ??? (string) - ???
+- length: 4096 (number) - ???
+- bookmark: 123 (number) - ???
+- lastViewed: `2015-01-28T10:28:38.0000000-05:00` (string) - ???
+- new: true (boolean) - ???
+- statusLabel: My cool label (string) - Optional label admin can place on an item
+- pages: ??? (number) - ???
+- isPurchased: ??? (string) - Only present on documents
+
+## Folder (AbstractItem)
+
+- new: 1 (number) - ???
+
+## AbstractItem (object)
+
+- description: My cool item (string) - Human readable description of the item
+- hierarchy (array[Hierarchy]) - Array of hierarchies for this item
+- id: 3 (string) - Unique identifier for the item
+- launched: true (boolean) - ???
+- name: Home Folder (string) - The human readable name for the item
+- received: `2015-01-28T10:28:38.0000000-05:00` (string) - ???
+- thumbnailUrl: http://s3.amazon.com/isafdjhsa841h.png (string) - URL of the thumbnail to display
+- type: ??? (string) - ???
+- created: `2015-01-28T10:28:38.0000000-05:00` (string) - Creation time of the item
+- modified: `2015-01-28T10:28:38.0000000-05:00` (string) - Last modification time of the item
+- canDownload: true (boolean) - Whether or not the item can be downloaded
+- canShare: true (boolean) - Whether or not the item can be shared
+- url: ??? (string) - ???
+- keywords (array[string]) - List of keywords for an item
+
+## Hierarchy (object)
+
+- id: `__root__` (string) - Unique identifier for the hierarchy
+- name: Home Folder (string) - The human readable name for the hierarchy
+- autostart: true (boolean) - Whether or not this hierarchy should autostart
+
+## ShareLink (object)
+
+- shareable: true (boolean) - Whether or not the item can / should be shared
+- url: ??? (string) - The shareable url of the item
+
+## ControlRequest (object)
+
+- visible: true (boolean) - True to show the controls, false to hide them
+
+## SimpleIdRequest (object)
+
+- id: 1324 (string) - The id of the item you are requesting
+
+## SimpleArrayOfIds (object)
+
+- ids: 1, 2 (array[string]) - Generic array of ids
+
+## SyncStatus (object)
+
+- complete: 1 (number) - ??? Should this be a boolean?
+- total: ??? (number) - ???
+- isrunning: true (boolean) - Whether or not a sync is running
+
+## CreateCollectionPost (object)
+
+- name: My Collection (string) - The name of the collection
+
+## Collection (CreateCollectionPost)
+
+- id: 1234 (string) - The unique id of the collection
+- created: `2015-01-28T10:28:38.0000000-05:00` (string) - Creation time of the collection
+- modified: `2015-01-28T10:28:38.0000000-05:00` (string) - Last modification time of the collection
+
+## DownloadStatusAbstract (object)
+
+- storageExceeded: true (boolean) - ???
+- progress: 90 (number) - ???
+
+## DownloadStatuses (DownloadStatusAbstract)
+
+- fails: 3 (number) - Number of failed downloads
+
+## DownloadStatus (DownloadStatusAbstract)
+
+- cellularExceeded: ??? (number) - ???
+- error: ??? (number) - ???
+
+## FolderNotificationStatus (object)
+
+- notification: ??? (string) - ???
+
+## UserAccount (object)
+
+- id: 1223 (string) - The unique ID of the user
+- username: bob.123 (string) - The username of the user
+- emailAddress: bob@company.com (string) - The user's email address
+- displayName: Bob Smith (string) - The user's name to display as they use the system
+- logOutUrl: ??? (string) - Can we remove this?
+
+## KeyValueStorage (object)
+
+- key: key (string) - The key where to store the desired value
+- value: value (string) - The value you wish to store
+
+## PostActionRequest (object)
+
+- type: ??? (string) - ???
+- id: 1234 (string) - Id of the item we are acting on
+- term: searching (string) - ???
+- page: 1 (number) - ???
