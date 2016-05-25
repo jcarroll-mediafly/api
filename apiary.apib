@@ -21,7 +21,7 @@ and application feature capibilities.
 + Request
     
     + Headers
-        
+    
             Cookie: interactivese2e-jwt=did=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJQcm9kdWN0Q2xhaW0iOiJ7XCJJZFwiOlwiOTM2OWI0MzVjNTA0NGMxOWIxMzEwN2JhYjA0Y2UwMzBcIixcIk5hbWVcIjpcIlRlc3QgSW50ZXJhY3RpdmVzIEUyRVwiLFwiTUNvZGVcIjpcImludGVyYWN0aXZlc2UyZVwifSIsIlVzZXJDbGFpbSI6IntcIklkXCI6XCJkNWNjYWE3MDY3NDc0NWM1YmFmMzhmODQxZDY4OTAzMVwiLFwiVXNlcm5hbWVcIjpcInFhQG1lZGlhZmx5LmNvbVwiLFwiRGlzcGxheU5hbWVcIjpcInFhQG1lZGlhZmx5LmNvbVwiLFwiQWNjZXNzVG9rZW5cIjpudWxsLFwiRW5jcnlwdGVkQWNjZXNzVG9rZW5cIjpcIkVJbm80ZXFGQmdLTGk1NTk2Y0d1eWkzKzhqcTd1OFIrbGNwaEx4Nld3dDF1SGRNWXJWM25pUThBSHVWeWVMTDhcIixcIkVtYWlsQWRkcmVzc1wiOlwicWFAbWVkaWFmbHkuY29tXCJ9IiwiaXNzIjoidmlld2VyIiwiYXVkIjoibWVkaWFmbHkuY29tIiwiZXhwIjoxNDYzNTkwOTQ0LCJuYmYiOjE0NjM1MDQ1NDR9.718pFnNb2CIz8RvPN1wPDoL__6ygSEK5e6INdKi136U; devicetype=web
             Referer: https://viewer.mediafly.com/interactives/interactive/9cf282320e6340ee8b830e5376d54531product246271/index.html
 
@@ -69,15 +69,21 @@ Retrieve the lat/long of the user's device
 
 + Parameters
 
-    + key: `2134` (string) - The key of the item we wish to look up on S3
+    + key: `2134` (string, required) - The key of the item we wish to look up on S3
 
 ### GET [GET]
 
 Get upload URL to s3 for the item provided using key parameter. This method should return 
 a pre-signed URL so an interactive can upload to an S3 bucket:
 
++ Request
 
-+ Response 200 (application/json)
+    + Headers
+    
+            Cookie: interactivese2e-jwt=did=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJQcm9kdWN0Q2xhaW0iOiJ7XCJJZFwiOlwiOTM2OWI0MzVjNTA0NGMxOWIxMzEwN2JhYjA0Y2UwMzBcIixcIk5hbWVcIjpcIlRlc3QgSW50ZXJhY3RpdmVzIEUyRVwiLFwiTUNvZGVcIjpcImludGVyYWN0aXZlc2UyZVwifSIsIlVzZXJDbGFpbSI6IntcIklkXCI6XCJkNWNjYWE3MDY3NDc0NWM1YmFmMzhmODQxZDY4OTAzMVwiLFwiVXNlcm5hbWVcIjpcInFhQG1lZGlhZmx5LmNvbVwiLFwiRGlzcGxheU5hbWVcIjpcInFhQG1lZGlhZmx5LmNvbVwiLFwiQWNjZXNzVG9rZW5cIjpudWxsLFwiRW5jcnlwdGVkQWNjZXNzVG9rZW5cIjpcIkVJbm80ZXFGQmdLTGk1NTk2Y0d1eWkzKzhqcTd1OFIrbGNwaEx4Nld3dDF1SGRNWXJWM25pUThBSHVWeWVMTDhcIixcIkVtYWlsQWRkcmVzc1wiOlwicWFAbWVkaWFmbHkuY29tXCJ9IiwiaXNzIjoidmlld2VyIiwiYXVkIjoibWVkaWFmbHkuY29tIiwiZXhwIjoxNDYzNTkwOTQ0LCJuYmYiOjE0NjM1MDQ1NDR9.718pFnNb2CIz8RvPN1wPDoL__6ygSEK5e6INdKi136U; devicetype=web
+            Referer: https://viewer.mediafly.com/interactives/interactive/9cf282320e6340ee8b830e5376d54531product246271/index.html
+
++ Response 200 (application/json; charset=utf-8)
 
     + Attributes (UrlInfo)
     
@@ -1051,7 +1057,7 @@ Get info about the interactive
 > Note: Depricated in favor of getCurrentItem(), getUserInfo, and getSystemInfo() methods. 
 > These are javascript methods that will ultimately all their HTTP counterparts.
 
-+ Request 
++ Request
 
     + Headers
     
@@ -1103,7 +1109,7 @@ Get info about the interactive
 
 ## UrlInfo (object)
 
-- url: http://s3.amazon.com/sfiiebg936tsa0whryf (string) - URL of key'd item on S3
+- url: http://s3.amazon.com/sfiiebg936tsa0whryf (string, required) - URL for the requested key
 
 ## Item (AbstractItem)
 
