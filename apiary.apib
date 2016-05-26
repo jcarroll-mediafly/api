@@ -1080,14 +1080,15 @@ Get info about the interactive
 
 ## Interactive (object)
 
-- deviceId: 3214 (string) - The id of the device being used
-- id: 123 (string) - Unique identifer of the interactive
-- lastUpdated: `2014-08-20T12:51:54.8749796Z` (string) - Timestamp of the last update to the interactive
-- item: ??? (string) - ???
-- osType: iOS (string) - Operating system that the interactive is running on
-- parentId: 0 (string) - Unique identifer of the interactive's parent
-- user: bob (string) - The current logged in user
-- displayName: My Cool Interactive (string) - Human readable name of the interactive
+- id: 123 (string, required) - Slug of the interactive
+- item: Testing Interactive (string, required) - Name of the interactive
+- lastUpdated: `2016-05-26T18:05:30+00:00` (string, required) - Timestamp of the last update to the interactive
+- osType: iOS (string, required) - Operating system that the interactive is running on
+- parentId: 0 (string, required) - Slug of the interactive's parent
+- user: bob@smith.com (string, required) - The current logged in user
+- displayName: Bob Smith  (string, required) - Disaply name of user
+- osVersion: 9.3  (string, optional) - Version of the operating system running interactive
+- appVersion: Bob Smith  (string, optional) - Version of the Mediafly app
 
 ## SystemInfo (object)
 
