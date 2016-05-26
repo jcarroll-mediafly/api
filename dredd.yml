@@ -3,7 +3,7 @@ custom:
   apiaryApiKey: c8c1d6bb4e1b8de64edd74aa0f616c2d
   apiaryApiName: mediaflycommands
 dry-run: null
-hookfiles: null
+hookfiles: ./hooks*.js
 language: nodejs
 sandbox: false
 server: null
