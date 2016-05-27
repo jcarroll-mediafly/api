@@ -20,6 +20,11 @@ hooks.before("System > Get GPS Coordinates > GET - Mobile Only", function (trans
   done();
 });
 
+hooks.before("Account Info > Logout > GET - All but Viwer", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
 hooks.beforeEachValidation(function (transaction, done) {
   //hooks.log('before each validation');
   done();
