@@ -25,11 +25,16 @@ hooks.before("Account Info > Logout > GET - All but Viwer", function (transactio
   done();
 });
 
-hooks.beforeEachValidation(function (transaction, done) {
-  //hooks.log('before each validation');
+hooks.before("Item Data > Get Item or Folder > GET > Example 2", function (transaction, done) {
+	transaction.fullPath = transaction.fullPath.replace("9369b435c5044c19b13107bab04ce030product238453", "9369b435c5044c19b13107bab04ce030product237156");	
   done();
 });
 
+// hooks.beforeEachValidation(function (transaction, done) {
+//   //hooks.log('before each validation');
+//   done();
+// });
+//
 // hooks.beforeValidation("Machines > Machines collection > Get Machines", function (transaction, done) {
 //   hooks.log("before validation");
 //   done();
@@ -39,11 +44,11 @@ hooks.beforeEachValidation(function (transaction, done) {
 //   hooks.log("after");
 //   done();
 // });
-
-hooks.afterEach(function (transaction, done) {
-  //hooks.log('after each');
-  done();
-});
+//
+// hooks.afterEach(function (transaction, done) {
+//   //hooks.log('after each');
+//   done();
+// });
 
 hooks.afterAll(function (transactions, done) {
   hooks.log('after all');
