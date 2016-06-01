@@ -25,6 +25,56 @@ hooks.before("Account Info > Logout > GET - All but Viwer", function (transactio
   done();
 });
 
+hooks.before("Controls > Show Control Bars > POST - Mobile only", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 1", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 2", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 3", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 4", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 5", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 6", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 7", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 8", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 9", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
 hooks.before("Item Data > Get Item or Folder > GET > Example 2", function (transaction, done) {
 	transaction.fullPath = transaction.fullPath.replace("9369b435c5044c19b13107bab04ce030product238453", "9369b435c5044c19b13107bab04ce030product237156");	
   done();
