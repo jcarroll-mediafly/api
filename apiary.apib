@@ -204,22 +204,6 @@ Get item list in a folder. Note that the example responses are of array[Item] an
 
     + Attributes (ErrorMsg)
 
-# Group Controls
-
-## Show Control Bars [/interactive-api/v5/control/control-bars]
-
-### POST - Mobile only [POST]
-
-+ Request (application/json; charset=utf-8)
-
-    + Attributes (ControlRequest)
-    
-+ Response 200
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 # Group Navigation
 
 ## Close Interactive [/interactive-redirect/v5/items/{id}/back?collection={collectionId}&term={term}]
@@ -303,6 +287,7 @@ Go to the previous item; with some conditonal logic, see notes
 There are serveral show UI requests for this endpoint. Based on the parameters (see below) different actions
 will occur on the mobile device.
 
+> - Show Control bars
 > - Show app settings
 > - Show User Management Dialog
 > - Show second screen options
@@ -313,6 +298,19 @@ will occur on the mobile device.
 > - Show downloader
 > - Show notifications manager
 
++ Request Control bars (application/json; charset=utf-8)
+
+        {
+            "ui" : "control-bars",
+            "visible": true
+        }
+    
++ Response 200
+
++ Response 500 (application/json; charset=utf-8)
+
+    + Attributes (ErrorMsg)  
+    
 + Request App Settings (application/json; charset=utf-8)
 
         {
@@ -1163,10 +1161,6 @@ Get info about the interactive
 
 - shareable: true (boolean, required) - Whether or not the item can / should be shared
 - url: https://assets.mediafly.com/l/VqmsMe (string, required) - The shareable url of the item, if it is sharable
-
-## ControlRequest (object)
-
-- visible: true (boolean) - True to show the controls, false to hide them
 
 ## SimpleIdRequest (object)
 

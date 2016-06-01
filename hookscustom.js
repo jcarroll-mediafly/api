@@ -25,11 +25,6 @@ hooks.before("Account Info > Logout > GET - All but Viwer", function (transactio
   done();
 });
 
-hooks.before("Controls > Show Control Bars > POST - Mobile only", function (transaction, done) {
-  transaction.skip = true;
-  done();
-});
-
 hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 1", function (transaction, done) {
   transaction.skip = true;
   done();
@@ -71,6 +66,11 @@ hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 8", 
 });
 
 hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 9", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 10", function (transaction, done) {
   transaction.skip = true;
   done();
 });
