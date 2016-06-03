@@ -75,6 +75,21 @@ hooks.before("Mobile UI Presenters > Show UI > POST - Mobile only > Example 10",
   done();
 });
 
+hooks.before("Navigation > Go Back > GET", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Navigation > Go to Next Item > GET", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Navigation > Go to Previous Item > GET", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
 hooks.before("Item Data > Get Item or Folder > GET > Example 2", function (transaction, done) {
 	transaction.fullPath = transaction.fullPath.replace("9369b435c5044c19b13107bab04ce030product238453", "9369b435c5044c19b13107bab04ce030product237156");	
   done();
