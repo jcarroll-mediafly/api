@@ -206,19 +206,19 @@ Get item list in a folder. Note that the example responses are of array[Item] an
 
 # Group Navigation
 
-## Close Interactive [/interactive-redirect/v5/items/{id}/back?collection={collectionId}&term={term}]
+## Go Back [/interactive-redirect/v5/items/{id}/back?collection={collectionId}&term={term}]
 
 + Parameters
 
-    + id: `1234` (string) - ???
-    + collectionId: `1234` (string, optional) - If defined take the user back to the collection
-    + term: `1234` (string, optional) - If defined take user back to search results
+    + id: `9369b435c5044c19b13107bab04ce030product245392` (string) - Slug of the item you want to redirect from
+    + collectionId: null (string, optional) - If defined take the user back to the collection
+    + term: null (string, optional) - If defined take user back to search results
 
 ### GET [GET]
 
 Close the interactive with some conditonal logic, see notes
 
-> Note that 'collection' and 'term' are optional.
+> Note that 'collection' and 'term' are optional. They are also not set by interactive developer and are only neeeded for viewer
 
 > - If 'collection' is defined take the user back to the collection.
 > - If 'term' is defined, take the user back to search results.
@@ -234,15 +234,15 @@ Close the interactive with some conditonal logic, see notes
 
 + Parameters
 
-    + id: `1234` (string) - ???
-    + collectionId: `1234` (string, optional) - If defined take the user to the next item in the collection
-    + term: `1234` (string, optional) - If defined take user to the next item in the search results
+    + id: `9369b435c5044c19b13107bab04ce030product245392` (string) - Slug of the item you want to redirect from
+    + collectionId (string, optional) - If defined take the user to the next item in the collection
+    + term (string, optional) - If defined take user to the next item in the search results
 
 ### GET [GET]
 
 Go to the next item; with some conditonal logic, see notes
 
-> Note 'collection' and 'term' are optional.
+> Note that 'collection' and 'term' are optional. They are also not set by interactive developer and are only neeeded for viewer
 
 > - If 'collection' is defined take the user to the next item in the collection.
 > - If 'term' is defined take the user to the next item in the search results.
@@ -258,15 +258,15 @@ Go to the next item; with some conditonal logic, see notes
 
 + Parameters
 
-    + id: `1234` (string) - ???
-    + collectionId: `1234` (string, optional) - If defined take the user to the previous item in the collection.
-    + term: `1234` (string, optional) - If defined take the user to the previous item in the search results.
+    + id: `9369b435c5044c19b13107bab04ce030product245392` (string) - Slug of the item you want to redirect from
+    + collectionId: null (string, optional) - If defined take the user to the previous item in the collection.
+    + term: null (string, optional) - If defined take the user to the previous item in the search results.
 
 ### GET [GET]
 
 Go to the previous item; with some conditonal logic, see notes
 
-> Note 'collection' and 'term' are optional.
+> Note that 'collection' and 'term' are optional. They are also not set by interactive developer and are only neeeded for viewer
 
 > - If 'collection' is defined take the user to the previous item in the collection.
 > - If 'term' is defined take the user to the previous item in the search results.
