@@ -90,6 +90,16 @@ hooks.before("Navigation > Go to Previous Item > GET", function (transaction, do
   done();
 });
 
+hooks.before("Mobile UI Presenters > Email > POST - Mobile Only > Example 1", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Mobile UI Presenters > Take Screenshot and Email > POST - Mobile Only", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
 hooks.before("Item Data > Get Item or Folder > GET > Example 2", function (transaction, done) {
 	transaction.fullPath = transaction.fullPath.replace("9369b435c5044c19b13107bab04ce030product238453", "9369b435c5044c19b13107bab04ce030product237156");	
   done();
