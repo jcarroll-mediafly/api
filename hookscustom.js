@@ -110,6 +110,16 @@ hooks.before("Item Data > Get Item or Folder > GET > Example 2", function (trans
   done();
 });
 
+hooks.before("Application Sync > Refresh > POST - Not Viewer", function (transaction, done) {
+	transaction.skip = true;
+    done();
+});
+
+hooks.before("Application Sync > Sync Status > GET - Not View", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
 // hooks.beforeEachValidation(function (transaction, done) {
 //   //hooks.log('before each validation');
 //   done();
