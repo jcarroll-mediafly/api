@@ -429,7 +429,9 @@ Show email controller for platform or Create a file from data URL and attach to 
 
 + Request Email by Id (application/json; charset=utf-8)
 
-    + Attributes (SimpleIdRequest)
+        {
+            "id" : "1234"
+        }
 
 + Response 200
 
@@ -1161,10 +1163,6 @@ Get info about the interactive
 
 - shareable: true (boolean, required) - Whether or not the item can / should be shared
 - url: https://assets.mediafly.com/l/VqmsMe (string, required) - The shareable url of the item, if it is sharable
-
-## SimpleIdRequest (object)
-
-- id: 1324 (string) - The id of the item you are requesting
 
 ## SimpleArrayOfIds (object)
 
