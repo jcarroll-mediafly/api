@@ -95,6 +95,11 @@ hooks.before("Mobile UI Presenters > Email > POST - Mobile Only > Example 1", fu
   done();
 });
 
+hooks.before("Mobile UI Presenters > Email > POST - Mobile Only > Example 2", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
 hooks.before("Mobile UI Presenters > Take Screenshot and Email > POST - Mobile Only", function (transaction, done) {
   transaction.skip = true;
   done();
