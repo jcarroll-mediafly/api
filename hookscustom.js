@@ -1,4 +1,5 @@
 var hooks = require('hooks');
+var stash = {}
 
 hooks.beforeAll(function (transactions, done) {
   hooks.log('before all');
@@ -117,6 +118,34 @@ hooks.before("Application Sync > Refresh > POST - Not Viewer", function (transac
 
 hooks.before("Application Sync > Sync Status > GET - Not View", function (transaction, done) {
   transaction.skip = true;
+  done();
+});
+
+hooks.after("Collections Tasks > Collections > POST", function (transaction, done) {
+  stash['collectionID'] = JSON.parse(transaction.real.body)['id'];
+  // hooks.log(JSON.parse(transaction.real.body))
+  // hooks.log(stash['collectionID'])
+  done();
+});
+
+hooks.before("Collections Tasks > Collection > PUT", function (transaction, done) {
+//	hooks.log(stash['collectionID'])
+    if(stash['collectionID'] != undefined) {
+      transaction.fullPath = transaction.fullPath.replace("2134", stash['collectionID']);	  
+	  bodyRequest = JSON.parse(transaction.request.body)
+      bodyRequest['name'] = "updatedAPiary"
+	  transaction.request.body = JSON.stringify(bodyRequest);
+	  
+	  // hooks.log(transaction.fullPath);
+	  // hooks.log(transaction.request.body);
+    };
+  done();
+});
+
+hooks.before("Collections Tasks > Collection > DELETE", function (transaction, done) {
+    if(stash['collectionID'] != undefined) {
+      transaction.fullPath = transaction.fullPath.replace("2134", stash['collectionID']);	  
+    };
   done();
 });
 
