@@ -442,9 +442,12 @@ Show email controller for platform or Create a file from data URL and attach to 
 + Request Email Data URL (application/json; charset=utf-8)
 
         {
-            "dataUrl" : "http://someusefulurl.com/thing.ext"
+            "dataUrl" : "data:application/pdf;base64,R0lGOD lhCwAOAMQfAP////7+/vj4+Hh4eHd3d/v7+/Dw8HV1dfLy8ubm5vX19e3t7...",
+            "filename": "mycoolfile.pdf",
+            "subject": "check out my file!",
+            "body": "Here is an awesome file i just made for you"
         }
-        
+
 + Response 200 (application/json; charset=utf-8)        
 
 + Response 500 (application/json; charset=utf-8)
