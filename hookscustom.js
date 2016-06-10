@@ -122,9 +122,11 @@ hooks.before("Application Sync > Sync Status > GET - Not View", function (transa
 });
 
 hooks.after("Collections Tasks > Collections > POST", function (transaction, done) {
-  stash['collectionID'] = JSON.parse(transaction.real.body)['id'];
-  // hooks.log(JSON.parse(transaction.real.body))
-  // hooks.log(stash['collectionID'])
+  if (transaction.real != undefined) {
+	  stash['collectionID'] = JSON.parse(transaction.real.body)['id'];
+	  // hooks.log(JSON.parse(transaction.real.body))
+	  // hooks.log(stash['collectionID'])		
+  }  
   done();
 });
 
@@ -146,6 +148,46 @@ hooks.before("Collections Tasks > Collection > DELETE", function (transaction, d
     if(stash['collectionID'] != undefined) {
       transaction.fullPath = transaction.fullPath.replace("2134", stash['collectionID']);	  
     };
+  done();
+});
+
+hooks.before("Downloader > Total Download Status > GET - Not Viewer", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Downloader > Download Status > GET - Not Viewer", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Downloader > Add to Downloader > POST - Not Viewer", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Downloader > Remove from Downloader > DELETE - Not Viewer", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Local Key Value Storage > All Keys > GET - Mobile Only", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Local Key Value Storage > All Keys > POST - Mobile Only", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Local Key Value Storage > Specific Key > GET - Mobile Only", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
+hooks.before("Local Key Value Storage > Specific Key > DELETE - Mobile Only", function (transaction, done) {
+  transaction.skip = true;
   done();
 });
 
