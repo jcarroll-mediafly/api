@@ -28,10 +28,6 @@ and application feature capibilities.
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (SystemInfo)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
     
 ## Get Online Status [/interactive-api/v5/system/online-status]
 
@@ -44,11 +40,7 @@ Check internet connection.
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (Status)
-    
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-    
+        
 ## Get GPS Coordinates [/interactive-api/v5/system/gps]
 
 ### GET - Mobile Only [GET]
@@ -60,11 +52,7 @@ Retrieve the lat/long of the user's device
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (GPS-Coords)
-    
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
+        
 ## Get Upload Url [/interactive-api/v5/system/uploadurl?key={key}]
 
 + Parameters
@@ -86,11 +74,7 @@ a pre-signed URL so an interactive can upload to an S3 bucket:
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (UrlInfo)
-    
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-    
+        
 # Group Item Data
 
 ## Get Current Item [/interactive-api/v5/items/__self__]
@@ -110,10 +94,6 @@ Get info about current interactive
 
     + Attributes (Item)
     
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-         
 ## Get Item or Folder [/interactive-api/v5/items/{id}]
 
 + Parameters
@@ -135,10 +115,6 @@ Get info about an item or a folder. Note that request is the same but different 
 
     + Attributes (Item)
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 + Request Folder (application/json; charset=utf-8)
     
    + Headers
@@ -149,11 +125,7 @@ Get info about an item or a folder. Note that request is the same but different 
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (Folder)
-    
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
+        
 ## Get Share [/interactive-api/v5/items/{id}/share]
 
 + Parameters
@@ -174,11 +146,7 @@ Get a share link for an item
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (ShareLink)
-    
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
+        
 ## Get Folder Items [/interactive-api/v5/items/{id}/items]
 
 + Parameters
@@ -199,10 +167,6 @@ Get item list in a folder. Note that the example responses are of array[Item] an
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (array[Item])
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 # Group Navigation
 
@@ -226,10 +190,6 @@ Close the interactive with some conditonal logic, see notes
 
 + Response 200 (application/json; charset=utf-8)
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 ## Go to Next Item [/interactive-redirect/v5/items/{id}/next?collection={collectionId}&term={term}]
 
 + Parameters
@@ -250,10 +210,6 @@ Go to the next item; with some conditonal logic, see notes
 
 + Response 200 (application/json; charset=utf-8)
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 ## Go to Previous Item [/interactive-redirect/v5/items/{id}/previous?collection={collectionId}&term={term}]
 
 + Parameters
@@ -273,10 +229,6 @@ Go to the previous item; with some conditonal logic, see notes
 > - If neither are defiend, take the user to the previous item in the folder
 
 + Response 200 (application/json; charset=utf-8)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 # Group Mobile UI Presenters
 
@@ -307,10 +259,6 @@ will occur on the mobile device.
     
 + Response 200
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)  
-    
 + Request App Settings (application/json; charset=utf-8)
 
         {
@@ -318,10 +266,6 @@ will occur on the mobile device.
         }
 
 + Response 200
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
         
 + Request User Management Dialog (application/json; charset=utf-8)
 
@@ -330,10 +274,6 @@ will occur on the mobile device.
         }
         
 + Response 200
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
         
 + Request Second Screen (application/json; charset=utf-8)
 
@@ -342,10 +282,6 @@ will occur on the mobile device.
         }
 
 + Response 200
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
         
 + Request Annotations (application/json; charset=utf-8)
 
@@ -355,10 +291,6 @@ will occur on the mobile device.
         
 + Response 200
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 + Request Search (application/json; charset=utf-8)
 
         {
@@ -366,10 +298,6 @@ will occur on the mobile device.
         }
         
 + Response 200
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 + Request Collections (application/json; charset=utf-8)
 
@@ -379,10 +307,6 @@ will occur on the mobile device.
         
 + Response 200
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 + Request Add to Collection (application/json; charset=utf-8)
 
         {
@@ -390,10 +314,6 @@ will occur on the mobile device.
         }
         
 + Response 200
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 + Request Downloader (application/json; charset=utf-8)
 
@@ -403,10 +323,6 @@ will occur on the mobile device.
         
 + Response 200
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 + Request Notification Manager (application/json; charset=utf-8)
 
         {
@@ -414,10 +330,6 @@ will occur on the mobile device.
         }
         
 + Response 200
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 ## Email [/interactive-api/v5/control/email]
 
@@ -434,10 +346,6 @@ Show email controller for platform or Create a file from data URL and attach to 
         }
 
 + Response 200
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
     
 + Request Email Data URL (application/json; charset=utf-8)
 
@@ -449,10 +357,6 @@ Show email controller for platform or Create a file from data URL and attach to 
         }
 
 + Response 200 (application/json; charset=utf-8)        
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
     
 ## Take Screenshot and Email [/interactive-api/v5/control/email-screenshot]
 
@@ -470,10 +374,6 @@ Take a screenshot and show email controller for platform
 
 + Response 200
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 # Group Application Sync
 
 ## Refresh [/interactive-api/v5/sync]
@@ -488,10 +388,6 @@ Tell the app to refresh
 
 + Response 200
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 ## Sync Status [/interactive-api/v5/sync/status]
 
 ### GET - Not View [GET]
@@ -502,10 +398,6 @@ Get application sync status
 
     + Attributes (SyncStatus)
     
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-
 # Group Searching
 
 ## Filter [/interactive-api/v5/items?filter={key1}:{value1},{key2}:{value2}]
@@ -534,10 +426,6 @@ Filter by specific properties. Example responses are of array[Item] and array[fo
 
     + Attributes (array[Item])
     
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
 ## Search [/interactive-api/v5/items?term={term}]
 
 + Parameters
@@ -559,10 +447,6 @@ Search for a term. Example responses are of array[Item] and array[folder]. But c
 
     + Attributes (array[Item])
     
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
 # Group Lists
 
 ## Last Viewed Content [/interactive-api/v5/items?list=last-viewed]
@@ -582,10 +466,6 @@ Obtain the last viewed content. Example responses are of array[Item] and array[f
 
     + Attributes (array[Item])
     
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
 ## Recently Created [/interactive-api/v5/items?list=recently-created]
 
 ### GET [GET]
@@ -603,10 +483,6 @@ Obtain recently created content. Example responses are of array[Item] and array[
 
     + Attributes (array[Item])
     
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-
 # Group Collections Tasks
 
 ## Collections [/interactive-api/v5/collections]
@@ -626,10 +502,6 @@ Get all the collections.
 
     + Attributes (array[Collection])
     
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
 ### POST [POST]
 
 Create a collection
@@ -646,10 +518,6 @@ Create a collection
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (Collection)
-    
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
     
 ## Collection [/interactive-api/v5/collections/{collectionId}]
 
@@ -673,10 +541,6 @@ Update a collection name
 + Response 200 (application/json; charset=utf-8)
 
         null
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
     
 ### DELETE [DELETE]
 
@@ -692,10 +556,6 @@ Delete a collection by ID
 + Response 200 (application/json; charset=utf-8)
 
         null
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 ## Collection Items [/interactive-api/v5/collections/{collectionId}/items]
 
@@ -717,11 +577,7 @@ Get all the items in a collection. Example responses are of array[Item] and arra
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (array[Item])
-    
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
+        
 ### POST [POST]
 
 Add an item(s) to a collection
@@ -742,10 +598,6 @@ Add an item(s) to a collection
 + Response 200 (application/json; charset=utf-8)
 
         null
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 ## Collection Item [/interactive-api/v5/collections/{collectionId}/items/{itemId}]
 
@@ -768,10 +620,6 @@ Remove an item from a collection
 + Response 200 (application/json; charset=utf-8)
 
         null
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 ## Reorder Collection Item [/interactive-api/v5/collections/{collectionId}/items/{itemId}/order?position={position}]
 
@@ -796,10 +644,6 @@ Reorder an item in the collection
 
         null
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 # Group Downloader
 
 ## Total Download Status [/interactive-api/v5/downloads/status]
@@ -811,11 +655,7 @@ Get total download progress
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (DownloadStatuses)
-    
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-    
+        
 ## Download Status [/interactive-api/v5/downloads/{id}/status/]
 
 + Parameters
@@ -830,10 +670,6 @@ Get download status for an item
 
     + Attributes (DownloadStatus)    
     
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)    
-
 ## Add to Downloader [/interactive-api/v5/downloads]
 
 ### POST - Not Viewer [POST]
@@ -846,10 +682,6 @@ Add items to the downloader
     
 + Response 200 (application/json; charset=utf-8)
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 ## Remove from Downloader [/interactive-api/v5/downloads/{itemId}]
 
 + Parameters
@@ -861,10 +693,6 @@ Add items to the downloader
 Remove from the downloader
 
 + Response 200 (application/json; charset=utf-8)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 # Group Notifications
 
@@ -880,19 +708,11 @@ Add a folder to the list of notifications
 
 + Response 200 (application/json; charset=utf-8)
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 ### DELETE [DELETE]
 
 Remove a folder from the list of notifications
 
 + Response 200 (application/json; charset=utf-8)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 ### GET [GET]
 
@@ -901,10 +721,6 @@ Get the status of for a folder that is in the notification list
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (FolderNotificationStatus)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 # Group Account Info
 
@@ -916,10 +732,6 @@ Logs user out of the system and return to the login page
 
 + Response 200 (application/json; charset=utf-8)
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 ## Get User Info [/interactive-api/v5/account]
 
 ### GET [GET]
@@ -929,10 +741,6 @@ Get info about the current user
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes  (UserAccount)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 # Group Embed
 
@@ -953,10 +761,6 @@ Gets all keys of the stored key-value pairs. If you use the prefix parameter, th
         {
             ["key1", "key2", "key3"]
         }
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
     
 ### POST - Mobile Only [POST]
 
@@ -967,10 +771,6 @@ Create or update key-value pairs
     + Attributes (array[KeyValueStorage])
     
 + Response 200 (application/json; charset=utf-8)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 ## Specific Key [/interactive-api/v5/info/{key}]
 
@@ -989,19 +789,11 @@ Obtain the value for the key asked for
         {
         }
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 ### DELETE - Mobile Only [DELETE]
 
 Delete the value for the provided key
 
 + Response 200 (application/json; charset=utf-8)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 # Group Synced Key Value Storage
 
@@ -1020,10 +812,6 @@ Gets all keys of the stored key-value pairs. If you use the prefix parameter, th
         {
             ["key1", "key2", "key3"]
         }
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
     
 ### POST [POST]
 
@@ -1034,10 +822,6 @@ Create or update key-value pairs
     + Attributes (array[KeyValueStorage])
     
 + Response 200 (application/json; charset=utf-8)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 ## Specific Key [/interactive-api/v5/syncedinfo/{key}]
 
@@ -1056,19 +840,11 @@ Obtain the value for the key asked for
         {
         }
 
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
-
 ### DELETE [DELETE]
 
 Delete the value for the provided key
 
 + Response 200 (application/json; charset=utf-8)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 # Group Post Actions
 
@@ -1083,10 +859,6 @@ TODO - Write something here
     + Attributes (PostActionRequest)
     
 + Response 200 (application/json; charset=utf-8)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
 
 # Group Deprecated
 
@@ -1109,10 +881,6 @@ Get info about the interactive
 + Response 200 (application/json; charset=utf-8)
 
     + Attributes (Interactive)
-
-+ Response 500 (application/json; charset=utf-8)
-
-    + Attributes (ErrorMsg)
     
 # Data Structures
 
