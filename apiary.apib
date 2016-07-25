@@ -989,17 +989,17 @@ Get info about the interactive
 
 ## DownloadStatusAbstract (object)
 
-- storageExceeded: true (boolean) - ???
-- progress: 90 (number) - ???
+- storageExceeded: true (boolean, required) - Whether or not storage has exceeded on your device
+- progress: 90 (number, required) - Download progress from 0 to 100%
 
 ## DownloadStatuses (DownloadStatusAbstract)
 
-- fails: 3 (number) - Number of failed downloads
+- fails: 3 (number, required) - Number of failed downloads
 
 ## DownloadStatus (DownloadStatusAbstract)
 
-- cellularExceeded: ??? (number) - ???
-- error: ??? (number) - ???
+- cellularExceeded: true (boolean, required) - Whether or not your cellular limit has been exceeded
+- error: true (boolean, required) - True if an error occured
 
 ## FolderNotificationStatus (object)
 
