@@ -191,6 +191,11 @@ hooks.before("Local Key Value Storage > Specific Key > DELETE - Mobile Only", fu
   done();
 });
 
+hooks.before("Account Info > Logout > GET", function (transaction, done) {
+  transaction.skip = true;
+  done();
+});
+
 // hooks.beforeEachValidation(function (transaction, done) {
 //   //hooks.log('before each validation');
 //   done();
