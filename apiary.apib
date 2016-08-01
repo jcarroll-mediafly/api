@@ -888,7 +888,7 @@ Delete the value for the provided key
 
 + Parameters
 
-    + prefix: `abc` (string) - Optional query parameter, if used will return all keys that start with the prefix. Omit to return all keys
+    + prefix: `APIARY` (string) - Optional query parameter, if used will return all keys that start with the prefix. Omit to return all keys
 
 ### GET [GET]
 
@@ -904,14 +904,14 @@ Gets all keys of the stored key-value pairs. If you use the prefix parameter, th
 + Response 200 (application/json; charset=utf-8)
 
         {
-            ["key1", "key2", "key3"]
+            "apiarY_TEST" : "value1"
         }
 
 ## Specific Key [/interactive-api/v5/syncedinfo/{key}]
 
 + Parameters
 
-    + key: `abc` (string) - The key on which to look up a value
+    + key: `APIARY_TEST` (string) - The key on which to look up a value
 
 ### GET [GET]
 
